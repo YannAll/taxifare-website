@@ -67,7 +67,7 @@ if url == 'https://taxifare.lewagon.ai/predict':
 #4. Let's retrieve the prediction from the **JSON** returned by the API
 
 #if response.status_code == 200:
-#'''    fare = response.json().get('fare', 'No fare returned')
+#    fare = response.json().get('fare', 'No fare returned')
 #    st.write('Predicted fare:', fare)
 #else:
 #    st.write('Error:', response.status_code)
