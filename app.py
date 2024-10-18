@@ -60,9 +60,9 @@ params={'date': date,
 
 url = 'https://taxifare.lewagon.ai/predict'
 
-if url == 'https://taxifare.lewagon.ai/predict':
+response=requests.get(url, params=params).json()
 
-    response=requests.get(url, params=params).json()
+print(response)
 
 #4. Let's retrieve the prediction from the **JSON** returned by the API
 
@@ -72,4 +72,11 @@ if url == 'https://taxifare.lewagon.ai/predict':
 #else:
 #    st.write('Error:', response.status_code)
 
-    print(response)
+
+'''
+        pickup_datetime='2014-07-06 19:18:00',
+        pickup_longitude=-73.950655,
+        pickup_latitude=40.783282,
+        dropoff_longitude=-73.984365,
+        dropoff_latitude=40.769802,
+        passenger_count=1):'''
