@@ -22,23 +22,23 @@ st.write('The time is:', time)
 
 #Let's ask for longitude:
 
-longitude = st.number_input('Insert the longitude as a float')
-st.write('The longitude is ', longitude)
+pickup_longitude = st.number_input('Insert the longitude as a float')
+st.write('The longitude is ', pickup_longitude)
 
 #Let's ask for dropoff_longitude:
 
-latitude = st.number_input('Insert the latitude as a float')
-st.write('The latitude is ', latitude)
+pickup_latitude = st.number_input('Insert the latitude as a float')
+st.write('The latitude is ', pickup_latitude)
 
 #Let's ask for droppoff longitude:
 
-dropff_longtitude = st.number_input('Insert the dropoff longtitude as a float')
-st.write('The dropoff longtitude is ', dropff_longtitude)
+dropoff_longitude = st.number_input('Insert the dropoff longtitude as a float')
+st.write('The dropoff longtitude is ', dropoff_longitude)
 
 #Let's ask for droppoff longitude:
 
-dropff_latitude = st.number_input('Insert the dropoff latitude as a float')
-st.write('The dropoff latitude is ', dropff_latitude)
+dropoff_latitude = st.number_input('Insert the dropoff latitude as a float')
+st.write('The dropoff latitude is ', dropoff_latitude)
 
 #Let's ask for passenger count:
 
@@ -47,30 +47,34 @@ st.write('The number of passengers is ', passengers)
 
 # 2. Let's build a dictionary containing the parameters for our API
 
-params={'date': date,
-        'time': time,
-        'longitude':longitude,
-        'latitude': latitude,
-        'longitude':longitude,
-        'dropff_longtitude': dropff_longtitude,
-        'dropff_latitude': dropff_latitude,
-        'passengers':passengers}
+params = {
+    'pickup_datetime': f"{date} {time}",
+    'pickup_longitude': pickup_longitude,
+    'pickup_latitude': pickup_latitude,
+    'dropoff_longitude': dropoff_longitude,
+    'dropoff_latitude': dropoff_latitude,
+    'passenger_count': int(passengers)
+}
 
 # 3. Let's call our API using the `requests` package
 
 url = 'https://taxifare.lewagon.ai/predict'
 
-response=requests.get(url, params=params).json()
+response=requests.get(url, params=params)
 
-print(response)
+print(response.status_code == 200)
+
+if response.status_code == 200:
+    fare = response.json().get('fare', 'No fare returned')
+    st.write('Predicted fare:', fare)
+else:
+    st.write('Error:', response.status_code)
+
+print(f"The expected fare for your taxi is: {response.json().get('fare', 'No fare returned')}")
 
 #4. Let's retrieve the prediction from the **JSON** returned by the API
 
-#if response.status_code == 200:
-#    fare = response.json().get('fare', 'No fare returned')
-#    st.write('Predicted fare:', fare)
-#else:
-#    st.write('Error:', response.status_code)
+
 
 
 '''
