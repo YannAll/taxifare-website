@@ -72,15 +72,15 @@ else:
 
 print(f"The expected fare for your taxi is: {response.json().get('fare', 'No fare returned')}")
 
-#4. Let's retrieve the prediction from the **JSON** returned by the API
 
 
 
 
-'''
-        pickup_datetime='2014-07-06 19:18:00',
-        pickup_longitude=-73.950655,
-        pickup_latitude=40.783282,
-        dropoff_longitude=-73.984365,
-        dropoff_latitude=40.769802,
-        passenger_count=1):'''
+
+# Test data to plug into the app
+#pickup_datetime='2014-07-06 19:18:00'
+#pickup_longitude=-73.950655,
+#pickup_latitude=40.783282,
+#dropoff_longitude=-73.984365
+#dropoff_latitude=40.769802
+#passenger_count=1)
